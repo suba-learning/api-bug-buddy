@@ -113,7 +113,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="min-h-screen flex flex-col">
+        <AppHeader />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <footer className="border-t py-6 text-center text-xs text-muted-foreground">
+          API Practice Lab — built for QA & API testing practice
+        </footer>
+      </div>
+      <Toaster richColors position="top-right" />
     </QueryClientProvider>
   );
 }
