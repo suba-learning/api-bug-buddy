@@ -98,7 +98,7 @@ export const Route = createFileRoute("/api/public/contacts/$id")({
           }
           const { data, error } = await supabase
             .from("contacts")
-            .update(update)
+            .update(update as any)
             .eq("id", params.id)
             .select()
             .maybeSingle();

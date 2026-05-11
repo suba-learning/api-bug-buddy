@@ -48,7 +48,7 @@ export const Route = createFileRoute("/api/public/users/me")({
 
           const { data, error } = await supabase
             .from("profiles")
-            .update(update)
+            .update(update as any)
             .eq("id", userId)
             .select()
             .single();
