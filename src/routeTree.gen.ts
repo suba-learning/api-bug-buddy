@@ -9,38 +9,274 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as GuideRouteImport } from './routes/guide'
+import { Route as DocsRouteImport } from './routes/docs'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactsNewRouteImport } from './routes/contacts.new'
+import { Route as ContactsIdRouteImport } from './routes/contacts.$id'
+import { Route as ContactsIdEditRouteImport } from './routes/contacts.$id.edit'
+import { Route as ApiPublicUsersRouteImport } from './routes/api/public/users'
+import { Route as ApiPublicContactsRouteImport } from './routes/api/public/contacts'
+import { Route as ApiPublicUsersMeRouteImport } from './routes/api/public/users/me'
+import { Route as ApiPublicUsersLogoutRouteImport } from './routes/api/public/users/logout'
+import { Route as ApiPublicUsersLoginRouteImport } from './routes/api/public/users/login'
+import { Route as ApiPublicContactsIdRouteImport } from './routes/api/public/contacts/$id'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuideRoute = GuideRouteImport.update({
+  id: '/guide',
+  path: '/guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactsNewRoute = ContactsNewRouteImport.update({
+  id: '/contacts/new',
+  path: '/contacts/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsIdRoute = ContactsIdRouteImport.update({
+  id: '/contacts/$id',
+  path: '/contacts/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsIdEditRoute = ContactsIdEditRouteImport.update({
+  id: '/edit',
+  path: '/edit',
+  getParentRoute: () => ContactsIdRoute,
+} as any)
+const ApiPublicUsersRoute = ApiPublicUsersRouteImport.update({
+  id: '/api/public/users',
+  path: '/api/public/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicContactsRoute = ApiPublicContactsRouteImport.update({
+  id: '/api/public/contacts',
+  path: '/api/public/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicUsersMeRoute = ApiPublicUsersMeRouteImport.update({
+  id: '/me',
+  path: '/me',
+  getParentRoute: () => ApiPublicUsersRoute,
+} as any)
+const ApiPublicUsersLogoutRoute = ApiPublicUsersLogoutRouteImport.update({
+  id: '/logout',
+  path: '/logout',
+  getParentRoute: () => ApiPublicUsersRoute,
+} as any)
+const ApiPublicUsersLoginRoute = ApiPublicUsersLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => ApiPublicUsersRoute,
+} as any)
+const ApiPublicContactsIdRoute = ApiPublicContactsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiPublicContactsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/docs': typeof DocsRoute
+  '/guide': typeof GuideRoute
+  '/login': typeof LoginRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/contacts/$id': typeof ContactsIdRouteWithChildren
+  '/contacts/new': typeof ContactsNewRoute
+  '/api/public/contacts': typeof ApiPublicContactsRouteWithChildren
+  '/api/public/users': typeof ApiPublicUsersRouteWithChildren
+  '/contacts/$id/edit': typeof ContactsIdEditRoute
+  '/api/public/contacts/$id': typeof ApiPublicContactsIdRoute
+  '/api/public/users/login': typeof ApiPublicUsersLoginRoute
+  '/api/public/users/logout': typeof ApiPublicUsersLogoutRoute
+  '/api/public/users/me': typeof ApiPublicUsersMeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/docs': typeof DocsRoute
+  '/guide': typeof GuideRoute
+  '/login': typeof LoginRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/contacts/$id': typeof ContactsIdRouteWithChildren
+  '/contacts/new': typeof ContactsNewRoute
+  '/api/public/contacts': typeof ApiPublicContactsRouteWithChildren
+  '/api/public/users': typeof ApiPublicUsersRouteWithChildren
+  '/contacts/$id/edit': typeof ContactsIdEditRoute
+  '/api/public/contacts/$id': typeof ApiPublicContactsIdRoute
+  '/api/public/users/login': typeof ApiPublicUsersLoginRoute
+  '/api/public/users/logout': typeof ApiPublicUsersLogoutRoute
+  '/api/public/users/me': typeof ApiPublicUsersMeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/docs': typeof DocsRoute
+  '/guide': typeof GuideRoute
+  '/login': typeof LoginRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/contacts/$id': typeof ContactsIdRouteWithChildren
+  '/contacts/new': typeof ContactsNewRoute
+  '/api/public/contacts': typeof ApiPublicContactsRouteWithChildren
+  '/api/public/users': typeof ApiPublicUsersRouteWithChildren
+  '/contacts/$id/edit': typeof ContactsIdEditRoute
+  '/api/public/contacts/$id': typeof ApiPublicContactsIdRoute
+  '/api/public/users/login': typeof ApiPublicUsersLoginRoute
+  '/api/public/users/logout': typeof ApiPublicUsersLogoutRoute
+  '/api/public/users/me': typeof ApiPublicUsersMeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/docs'
+    | '/guide'
+    | '/login'
+    | '/settings'
+    | '/signup'
+    | '/contacts/$id'
+    | '/contacts/new'
+    | '/api/public/contacts'
+    | '/api/public/users'
+    | '/contacts/$id/edit'
+    | '/api/public/contacts/$id'
+    | '/api/public/users/login'
+    | '/api/public/users/logout'
+    | '/api/public/users/me'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/docs'
+    | '/guide'
+    | '/login'
+    | '/settings'
+    | '/signup'
+    | '/contacts/$id'
+    | '/contacts/new'
+    | '/api/public/contacts'
+    | '/api/public/users'
+    | '/contacts/$id/edit'
+    | '/api/public/contacts/$id'
+    | '/api/public/users/login'
+    | '/api/public/users/logout'
+    | '/api/public/users/me'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/docs'
+    | '/guide'
+    | '/login'
+    | '/settings'
+    | '/signup'
+    | '/contacts/$id'
+    | '/contacts/new'
+    | '/api/public/contacts'
+    | '/api/public/users'
+    | '/contacts/$id/edit'
+    | '/api/public/contacts/$id'
+    | '/api/public/users/login'
+    | '/api/public/users/logout'
+    | '/api/public/users/me'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
+  DocsRoute: typeof DocsRoute
+  GuideRoute: typeof GuideRoute
+  LoginRoute: typeof LoginRoute
+  SettingsRoute: typeof SettingsRoute
+  SignupRoute: typeof SignupRoute
+  ContactsIdRoute: typeof ContactsIdRouteWithChildren
+  ContactsNewRoute: typeof ContactsNewRoute
+  ApiPublicContactsRoute: typeof ApiPublicContactsRouteWithChildren
+  ApiPublicUsersRoute: typeof ApiPublicUsersRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guide': {
+      id: '/guide'
+      path: '/guide'
+      fullPath: '/guide'
+      preLoaderRoute: typeof GuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +284,124 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contacts/new': {
+      id: '/contacts/new'
+      path: '/contacts/new'
+      fullPath: '/contacts/new'
+      preLoaderRoute: typeof ContactsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts/$id': {
+      id: '/contacts/$id'
+      path: '/contacts/$id'
+      fullPath: '/contacts/$id'
+      preLoaderRoute: typeof ContactsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts/$id/edit': {
+      id: '/contacts/$id/edit'
+      path: '/edit'
+      fullPath: '/contacts/$id/edit'
+      preLoaderRoute: typeof ContactsIdEditRouteImport
+      parentRoute: typeof ContactsIdRoute
+    }
+    '/api/public/users': {
+      id: '/api/public/users'
+      path: '/api/public/users'
+      fullPath: '/api/public/users'
+      preLoaderRoute: typeof ApiPublicUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/contacts': {
+      id: '/api/public/contacts'
+      path: '/api/public/contacts'
+      fullPath: '/api/public/contacts'
+      preLoaderRoute: typeof ApiPublicContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/users/me': {
+      id: '/api/public/users/me'
+      path: '/me'
+      fullPath: '/api/public/users/me'
+      preLoaderRoute: typeof ApiPublicUsersMeRouteImport
+      parentRoute: typeof ApiPublicUsersRoute
+    }
+    '/api/public/users/logout': {
+      id: '/api/public/users/logout'
+      path: '/logout'
+      fullPath: '/api/public/users/logout'
+      preLoaderRoute: typeof ApiPublicUsersLogoutRouteImport
+      parentRoute: typeof ApiPublicUsersRoute
+    }
+    '/api/public/users/login': {
+      id: '/api/public/users/login'
+      path: '/login'
+      fullPath: '/api/public/users/login'
+      preLoaderRoute: typeof ApiPublicUsersLoginRouteImport
+      parentRoute: typeof ApiPublicUsersRoute
+    }
+    '/api/public/contacts/$id': {
+      id: '/api/public/contacts/$id'
+      path: '/$id'
+      fullPath: '/api/public/contacts/$id'
+      preLoaderRoute: typeof ApiPublicContactsIdRouteImport
+      parentRoute: typeof ApiPublicContactsRoute
+    }
   }
 }
 
+interface ContactsIdRouteChildren {
+  ContactsIdEditRoute: typeof ContactsIdEditRoute
+}
+
+const ContactsIdRouteChildren: ContactsIdRouteChildren = {
+  ContactsIdEditRoute: ContactsIdEditRoute,
+}
+
+const ContactsIdRouteWithChildren = ContactsIdRoute._addFileChildren(
+  ContactsIdRouteChildren,
+)
+
+interface ApiPublicContactsRouteChildren {
+  ApiPublicContactsIdRoute: typeof ApiPublicContactsIdRoute
+}
+
+const ApiPublicContactsRouteChildren: ApiPublicContactsRouteChildren = {
+  ApiPublicContactsIdRoute: ApiPublicContactsIdRoute,
+}
+
+const ApiPublicContactsRouteWithChildren =
+  ApiPublicContactsRoute._addFileChildren(ApiPublicContactsRouteChildren)
+
+interface ApiPublicUsersRouteChildren {
+  ApiPublicUsersLoginRoute: typeof ApiPublicUsersLoginRoute
+  ApiPublicUsersLogoutRoute: typeof ApiPublicUsersLogoutRoute
+  ApiPublicUsersMeRoute: typeof ApiPublicUsersMeRoute
+}
+
+const ApiPublicUsersRouteChildren: ApiPublicUsersRouteChildren = {
+  ApiPublicUsersLoginRoute: ApiPublicUsersLoginRoute,
+  ApiPublicUsersLogoutRoute: ApiPublicUsersLogoutRoute,
+  ApiPublicUsersMeRoute: ApiPublicUsersMeRoute,
+}
+
+const ApiPublicUsersRouteWithChildren = ApiPublicUsersRoute._addFileChildren(
+  ApiPublicUsersRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
+  DocsRoute: DocsRoute,
+  GuideRoute: GuideRoute,
+  LoginRoute: LoginRoute,
+  SettingsRoute: SettingsRoute,
+  SignupRoute: SignupRoute,
+  ContactsIdRoute: ContactsIdRouteWithChildren,
+  ContactsNewRoute: ContactsNewRoute,
+  ApiPublicContactsRoute: ApiPublicContactsRouteWithChildren,
+  ApiPublicUsersRoute: ApiPublicUsersRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
