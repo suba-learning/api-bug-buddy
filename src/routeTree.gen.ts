@@ -10,33 +10,111 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicUsersRouteImport } from './routes/api/public/users'
+import { Route as ApiPublicContactsRouteImport } from './routes/api/public/contacts'
+import { Route as ApiPublicUsersMeRouteImport } from './routes/api/public/users/me'
+import { Route as ApiPublicUsersLogoutRouteImport } from './routes/api/public/users/logout'
+import { Route as ApiPublicUsersLoginRouteImport } from './routes/api/public/users/login'
+import { Route as ApiPublicContactsIdRouteImport } from './routes/api/public/contacts/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicUsersRoute = ApiPublicUsersRouteImport.update({
+  id: '/api/public/users',
+  path: '/api/public/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicContactsRoute = ApiPublicContactsRouteImport.update({
+  id: '/api/public/contacts',
+  path: '/api/public/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicUsersMeRoute = ApiPublicUsersMeRouteImport.update({
+  id: '/me',
+  path: '/me',
+  getParentRoute: () => ApiPublicUsersRoute,
+} as any)
+const ApiPublicUsersLogoutRoute = ApiPublicUsersLogoutRouteImport.update({
+  id: '/logout',
+  path: '/logout',
+  getParentRoute: () => ApiPublicUsersRoute,
+} as any)
+const ApiPublicUsersLoginRoute = ApiPublicUsersLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => ApiPublicUsersRoute,
+} as any)
+const ApiPublicContactsIdRoute = ApiPublicContactsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ApiPublicContactsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/contacts': typeof ApiPublicContactsRouteWithChildren
+  '/api/public/users': typeof ApiPublicUsersRouteWithChildren
+  '/api/public/contacts/$id': typeof ApiPublicContactsIdRoute
+  '/api/public/users/login': typeof ApiPublicUsersLoginRoute
+  '/api/public/users/logout': typeof ApiPublicUsersLogoutRoute
+  '/api/public/users/me': typeof ApiPublicUsersMeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/contacts': typeof ApiPublicContactsRouteWithChildren
+  '/api/public/users': typeof ApiPublicUsersRouteWithChildren
+  '/api/public/contacts/$id': typeof ApiPublicContactsIdRoute
+  '/api/public/users/login': typeof ApiPublicUsersLoginRoute
+  '/api/public/users/logout': typeof ApiPublicUsersLogoutRoute
+  '/api/public/users/me': typeof ApiPublicUsersMeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/contacts': typeof ApiPublicContactsRouteWithChildren
+  '/api/public/users': typeof ApiPublicUsersRouteWithChildren
+  '/api/public/contacts/$id': typeof ApiPublicContactsIdRoute
+  '/api/public/users/login': typeof ApiPublicUsersLoginRoute
+  '/api/public/users/logout': typeof ApiPublicUsersLogoutRoute
+  '/api/public/users/me': typeof ApiPublicUsersMeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/public/contacts'
+    | '/api/public/users'
+    | '/api/public/contacts/$id'
+    | '/api/public/users/login'
+    | '/api/public/users/logout'
+    | '/api/public/users/me'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/public/contacts'
+    | '/api/public/users'
+    | '/api/public/contacts/$id'
+    | '/api/public/users/login'
+    | '/api/public/users/logout'
+    | '/api/public/users/me'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/public/contacts'
+    | '/api/public/users'
+    | '/api/public/contacts/$id'
+    | '/api/public/users/login'
+    | '/api/public/users/logout'
+    | '/api/public/users/me'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicContactsRoute: typeof ApiPublicContactsRouteWithChildren
+  ApiPublicUsersRoute: typeof ApiPublicUsersRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,12 +126,93 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/users': {
+      id: '/api/public/users'
+      path: '/api/public/users'
+      fullPath: '/api/public/users'
+      preLoaderRoute: typeof ApiPublicUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/contacts': {
+      id: '/api/public/contacts'
+      path: '/api/public/contacts'
+      fullPath: '/api/public/contacts'
+      preLoaderRoute: typeof ApiPublicContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/users/me': {
+      id: '/api/public/users/me'
+      path: '/me'
+      fullPath: '/api/public/users/me'
+      preLoaderRoute: typeof ApiPublicUsersMeRouteImport
+      parentRoute: typeof ApiPublicUsersRoute
+    }
+    '/api/public/users/logout': {
+      id: '/api/public/users/logout'
+      path: '/logout'
+      fullPath: '/api/public/users/logout'
+      preLoaderRoute: typeof ApiPublicUsersLogoutRouteImport
+      parentRoute: typeof ApiPublicUsersRoute
+    }
+    '/api/public/users/login': {
+      id: '/api/public/users/login'
+      path: '/login'
+      fullPath: '/api/public/users/login'
+      preLoaderRoute: typeof ApiPublicUsersLoginRouteImport
+      parentRoute: typeof ApiPublicUsersRoute
+    }
+    '/api/public/contacts/$id': {
+      id: '/api/public/contacts/$id'
+      path: '/$id'
+      fullPath: '/api/public/contacts/$id'
+      preLoaderRoute: typeof ApiPublicContactsIdRouteImport
+      parentRoute: typeof ApiPublicContactsRoute
+    }
   }
 }
 
+interface ApiPublicContactsRouteChildren {
+  ApiPublicContactsIdRoute: typeof ApiPublicContactsIdRoute
+}
+
+const ApiPublicContactsRouteChildren: ApiPublicContactsRouteChildren = {
+  ApiPublicContactsIdRoute: ApiPublicContactsIdRoute,
+}
+
+const ApiPublicContactsRouteWithChildren =
+  ApiPublicContactsRoute._addFileChildren(ApiPublicContactsRouteChildren)
+
+interface ApiPublicUsersRouteChildren {
+  ApiPublicUsersLoginRoute: typeof ApiPublicUsersLoginRoute
+  ApiPublicUsersLogoutRoute: typeof ApiPublicUsersLogoutRoute
+  ApiPublicUsersMeRoute: typeof ApiPublicUsersMeRoute
+}
+
+const ApiPublicUsersRouteChildren: ApiPublicUsersRouteChildren = {
+  ApiPublicUsersLoginRoute: ApiPublicUsersLoginRoute,
+  ApiPublicUsersLogoutRoute: ApiPublicUsersLogoutRoute,
+  ApiPublicUsersMeRoute: ApiPublicUsersMeRoute,
+}
+
+const ApiPublicUsersRouteWithChildren = ApiPublicUsersRoute._addFileChildren(
+  ApiPublicUsersRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicContactsRoute: ApiPublicContactsRouteWithChildren,
+  ApiPublicUsersRoute: ApiPublicUsersRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
