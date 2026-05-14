@@ -74,14 +74,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "APITestingPractice" },
+      { name: "description", content: "API Practice Lab is a full-stack application for practicing REST API testing with JWT authentication and CRUD operations." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "APITestingPractice" },
+      { property: "og:description", content: "API Practice Lab is a full-stack application for practicing REST API testing with JWT authentication and CRUD operations." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "APITestingPractice" },
+      { name: "twitter:description", content: "API Practice Lab is a full-stack application for practicing REST API testing with JWT authentication and CRUD operations." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/effc6ed5-9538-4ecb-890c-54a4f09f1e18/id-preview-ee7929c7--4f73b64a-6d8c-4c8c-9c9a-d6a5b6b8e8a3.lovable.app-1778778433942.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/effc6ed5-9538-4ecb-890c-54a4f09f1e18/id-preview-ee7929c7--4f73b64a-6d8c-4c8c-9c9a-d6a5b6b8e8a3.lovable.app-1778778433942.png" },
     ],
     links: [
       {
